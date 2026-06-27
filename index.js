@@ -24,18 +24,20 @@ function getpokemon(){
     return element;
 }
 
-async function searchPokemon() {
+export async function searchPokemon() {
     const name = getpokemon();
 
     const pokemon = await fetchPokemonData(name);
-
-    console.log(pokemon);
+    return pokemon;
 }
 
 async function data() {
-    const pokemon = await fetchPokemonData(getPokemon());
+    const pokemon = await fetchPokemonData(getpokemon());
     console.log(pokemon);
 }
+
+
+
 
 
 
