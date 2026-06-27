@@ -1,18 +1,120 @@
-nav ul {
+#indexnav ul {
+    
     list-style-type: none;
-    margin: 0;
-    padding: 0;
-    background-color: #333333;
+    margin: 25px;
+    padding: 9px;
+    background-color: #fab6ad;
     display: flex;
+    justify-content: space-between;
+
+    border-radius: 25px;
 }
 
-nav ul li a {
+#indexnav ul li a {
     display: block;
     color: white;
     padding: 14px 16px;
     text-decoration: none;
+    text-align: center ;
 }
 
-nav ul li a:hover {
-    background-color: #111111;
+#indexnav ul li a:hover {
+    background-color: #cf8c8c;
+    border-color: #fab6ad;
+    border-radius: 25px;
+    transition: border-color 0.3s, background-color 0.3s;
 }
+
+#container {
+    display: flex;
+    justify-content:space-evenly;
+    padding: 20px;
+}
+
+.bav{
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+
+}
+
+.bav a{
+    text-decoration: none;
+    color: white;
+}
+
+#indexInfo {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 25px;
+    color: #333333;
+
+    border: solid 1px #333333;
+    border-radius: 30px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body {
+    background-color: #f0f0f0;
+    color: #333333;
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body h1{
+    text-align: center;
+}
+
+body.dark-mode {
+    background-color: #333333;
+    color: #f0f0f0;
+}
+
+body.dark-mode #indexInfo {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 25px;
+    color: #333333;
+    
+    background-color: #f8f7f7;
+}
+
+button#dark {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    
+}
+
+button#dark img {
+    width: 100px;
+    height: 100px;
+}
+
+body.dark-mode button#dark {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f8f7f7;
+    transition: background-color 0.3s;
+}
+
+#darkbutton {
+    display: flex;
+    position: relative;
+    margin-top: 20px;
+}
+/* index.html styles*/
+
+
+
+
+/*pokedex.html styles*/
+
+
