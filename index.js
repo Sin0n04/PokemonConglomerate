@@ -30,6 +30,7 @@ async function getPokemon() {
 
 //function to create element?? brb
 async function pokemonElement(pokemon) {
+    console.log("pokemonElement called");
     const pkinfo = document.getElementById("pkinfo");
     pkinfo.innerHTML = ""; // Clear previous result
 
@@ -89,6 +90,9 @@ async function pokemonElement(pokemon) {
     //style the element....
     box.classList.add("visible");
 }
+
+//create event
+document.getElementById("searchButton").addEventListener("click", pokemonElement);
 
 
     
