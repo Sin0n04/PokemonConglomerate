@@ -1,4 +1,5 @@
-//color table
+
+  console.log("index.js loaded");  //Maps table
 const colours = {
     normal: '#A8A77A',
     fire: '#EE8130',
@@ -20,6 +21,14 @@ const colours = {
     fairy: '#D685AD',
 };
 
+const pokeValues = {
+    poke: 12 ,
+    great: 8 ,
+    ultra: 2
+}
+
+
+
 
 
 //implement on every page
@@ -28,6 +37,58 @@ function darkfunction() {
         element.classList.toggle("dark-mode");
 }
 
+async function statusCondition(value) {
+    const box = document.getElementById("statuslist");
+    const statcondlist = await getstatusdata();
+
+    box.innerHTML = "";
+
+    const div = document.createElement("div");
+    div.classList.toggle("center-box");
+
+    const title = document.createElement("h2");
+    title.textContent = "Status Conditions";
+    div.appendChild(title);
+
+    box.appendChild(div);
+
+    const ul = document.createElement("ul");
+
+    const results = statcondlist.results;
+
+    for (let i = 2; i < 7; i++) {
+        const cond = results[i];
+
+        const li = document.createElement("li");
+        const button = document.createElement("button");
+
+        button.textContent = cond.name;
+
+        li.appendChild(button);
+        ul.appendChild(li);
+    }
+
+    box.appendChild(ul);
+    box.classList.add("visible");
+}
+
+async function pokeballValue(element){
+    let pokeball = element.id;
+    let value = "";
+    switch(pokeball){
+        case "poke":
+            value = pokeValues.poke;
+            break;
+        case "great":
+            break;
+        case "ultra":
+            value = pokeValues.ultra;
+            break;
+    }
+
+     await statusCondition(value);
+
+}
 
 
 //fetching pokemon data functions 
@@ -40,6 +101,19 @@ async function fetchPokemonData(pokemonName) {
     }
 }
 
+async function fetchStatusData(){
+    try {
+        const response = await fetch("https://pokeapi.co/api/v2/move-ailment")
+        return response.json()
+    }
+    catch (e) {
+        console.error('Error fetching Pokemon data:', e);
+    }
+}
+
+async function getstatusdata(){
+    return fetchStatusData();
+}
 
 function getpokemonName(){
     return document.getElementById("search").value;
@@ -50,6 +124,26 @@ async function getPokemon() {
 
     return fetchPokemonData(name);//ACTUAL POKEMON DATA
 }
+
+async function getPokemonRate(){
+    try{
+        const response = await fetch("https://pokeapi.co/api/v2/pokemon-species/" + getPokemon().id)
+        return response.json;
+    }catch (e) {
+        console.error("Error fetching Pokemon data: ", e);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 
 //function to create element?? brb
 async function pokemonElement(pokemon) {
@@ -231,8 +325,36 @@ async function pokemonElement(pokemon) {
 
 //create event
 document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("searchButton")
-        .addEventListener("click", pokemonElement);
+    document.getElementById("searchForm").addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent page reload
+        pokemonElement();
+    });
+
 });
 
+//catch rate functions...
+
+function calculateRate(catchrate) {
     
+
+}
+
+async function catchRateElement(){
+    const pkjson = await getPokemon();
+    const box = document.getElementById("catchRatePage");
+
+    //get values
+    const cr = getPokemonRate();
+    const catchrate = cr.capture_rate;
+
+    let result = calculateRate(catchrate);
+
+   document.addEventListener("DOMContentLoaded", () =>{
+       document.getElementById("searchFormRate").addEventListener("submit",function (event) {
+           event.preventDefault();
+           //insert catchrate function here
+
+       })
+   })
+}
+

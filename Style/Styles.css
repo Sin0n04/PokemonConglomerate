@@ -202,10 +202,10 @@ body.dark-mode button#dark {
     color: #555;
 }
 
-#pkinfo {
+#pkinfo , #statuslist{
     display: none;
 }
-#pkinfo.visible {
+#pkinfo.visible, #statuslist.visible {
     display: block;
 }
 
@@ -246,7 +246,7 @@ body.dark-mode .center-box p {
     margin: 15px 0;
 }
 
-#pkTypes li {
+#pkTypes li{
     list-style: none;
     padding: 8px 18px;
     border-radius: 999px;
@@ -265,7 +265,7 @@ body.dark-mode .center-box p {
     image-rendering: pixelated;
 }
 
-#pkAbilities {
+#pkAbilities{
     list-style: none;
     display: flex;
     justify-content: center;
@@ -282,4 +282,77 @@ body.dark-mode .center-box p {
     font-weight: bold;
     text-transform: capitalize;
     box-shadow: 0 3px 8px rgba(0,0,0,.3);
+}
+
+
+/*catch rate styles*/
+
+#pokeball {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    gap: 20px;
+}
+
+#pokeball li {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+#pokeball img {
+    width: 80px;
+    height: auto;
+}
+
+#statuslist{
+    display: none;
+    min-height: 100px;
+}
+
+#statuslist.visible{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#statuslist ul , #pokelist ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+#statuslist li, #pokelist li {
+    margin: 0;
+}
+
+#statuslist li button , #pokelist li button{
+    width: 100%;
+    padding: 8px 18px;
+    border: none;
+    border-radius: 50px;
+    background-color: #74b3c7;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    text-transform: capitalize;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(0,0,0,.3);
+    transition: background-color .2s, transform .1s;
+}
+
+#statuslist li button:hover , #pokelist {
+    background-color: #5b9aad;
+}
+
+#statuslist li button:active {
+    transform: scale(0.96);
 }

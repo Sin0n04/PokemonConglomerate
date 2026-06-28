@@ -15,14 +15,34 @@
             </ul>
         </nav>
         <div class="title">
-    <h1>Catch Rate calculator/h1>
+    <h1>Catch Rate calculator</h1>
+    </div>
+        <form class="search-container" id="searchFormRate">
+            <input type="text" id="search" placeholder="Search Pokémon...">
+            <button type="submit" id="searchButton">Search</button>
+        </form>
+    
+    <div class="center-box" id="pokelist">
+         <ul id="pokeball">
+            <li><button onclick="pokeballValue(this)" id="poke" ><img src="../assets/poke.png" alt=""></button></li>
+            <li><button onclick="pokeballValue(this)" id="great"><img src="../assets/great.png" alt=""></button></li>
+            <li><button onclick="pokeballValue(this)" id="ultra"><img src="../assets/ultra.png" alt=""></button></li>
+        </ul>
     </div>
 
+     <div class="center-box" id="statuslist">
+
+     </div>
     <div class="center-box" id="catchRatePage">
-        
     </div>
 
     </div>
+
+    <div id="darkbutton">
+    <button id="dark" onclick="darkfunction()"><img src="../assets/dark-theme-svgrepo-com.png"></button>
+    </div>
+
     <script src="../index.js"></script>
+
 </body>
 </html>

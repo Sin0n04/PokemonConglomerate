@@ -23,10 +23,10 @@
     <div class="title">
     <h1>Pokedex</h1>
     </div>
-    <div class="search-container">
+    <form class="search-container" id="searchForm">
         <input type="text" id="search" placeholder="Search Pokémon...">
-        <button onclick="getpokemonName()" id="searchButton">Search</button>
-    </div>
+        <button type="submit" id="searchButton">Search</button>
+    </form>
 
     <div class="center-box">
         <h2>Welcome</h2>
@@ -46,10 +46,6 @@
         </table>
 
         <div id="pkAbilities">
-        <table>
-            <tr>
-            </tr>
-        </table>
         </div>
 
         <img src="" id="pkSprite">
