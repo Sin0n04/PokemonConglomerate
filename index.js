@@ -201,11 +201,17 @@ async function pokemonElement(pokemon) {
 
     //get abilities
     const abilities = document.getElementById("pkAbility");
-    let ablilitylist = document.createElement("ul");
+    const ablilitylist = document.createElement("ul");
+     ablilitylist.id = "pkAbilities";
     let ablist = pokemonjson.abilities;
+
+    let  idelement2 = document.createElement("th");
+    idelement2.textContent = "Abilities";
+    ablilitylist.appendChild(idelement2);
 
     ablist.forEach(ab => {
         let li = document.createElement("li");
+        li.style.backgroundColor = "#74b3c7";
         li.textContent = ab.ability.name;
         ablilitylist.appendChild(li);
     })
@@ -215,6 +221,7 @@ async function pokemonElement(pokemon) {
     //add everything to the box
     box.appendChild(name);
     box.appendChild(statslist);
+    box.appendChild(ablilitylist);
     box.appendChild(typelist);
     box.appendChild(idelement);
 
