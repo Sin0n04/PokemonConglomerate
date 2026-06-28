@@ -7,8 +7,36 @@
 </head>
 <body>
 
-<input type="text" placeholder="Search.." id="search">
-<button onclick="searchPokemon()">Search</button>
+    
+
+
+<div class="pokemon">
+
+    <nav id="indexnav">
+        <ul class="bav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="teamBuilderPage.html">Team Builder</a></li>
+            <li><a href="catchRatePage.html">Catch Rate calculator</a></li>
+        </ul>
+    </nav>
+
+    <div class="title">
+    <h1>Pokedex</h1>
+    </div>
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Search Pokémon...">
+        <button onclick="searchPokemon()">Search</button>
+    </div>
+
+    <div class="center-box">
+        <h2>Welcome</h2>
+        <p>Use the search bar to look up Pokémon.</p>
+    </div>
+
+    <div class="center-box" id="pkinfo" >
+    </div>
+</div>
+
 <div id="darkbutton">
     <button id="dark" onclick="darkfunction()"><img src="../assets/dark-theme-svgrepo-com.png"></button>
 </div>
