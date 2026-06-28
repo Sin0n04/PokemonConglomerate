@@ -1,7 +1,7 @@
 
 //implement on every page
 function darkfunction() {
-        var element = document.body;
+        let element = document.body;
         element.classList.toggle("dark-mode");
 }
 
@@ -11,8 +11,7 @@ function darkfunction() {
 async function fetchPokemonData(pokemonName) {
     try {
         const response = await fetch("https://pokeapi.co/api/v2/pokemon/" + pokemonName);
-        const data = await response.json();
-        return data;
+        return await response.json();
     } catch (error) {
         console.error('Error fetching Pokemon data:', error);
     }
@@ -20,25 +19,14 @@ async function fetchPokemonData(pokemonName) {
 
 
 function getpokemon(){
-    var element = document.getElementById("search").value;
-    return element;
+    return document.getElementById("search").value;
 }
 
 export async function searchPokemon() {
     const name = getpokemon();
 
-    const pokemon = await fetchPokemonData(name);
-    return pokemon;
+    return await fetchPokemonData(name);
 }
-
-async function data() {
-    const pokemon = await fetchPokemonData(getpokemon());
-    console.log(pokemon);
-}
-
-
-
-
 
 
     
