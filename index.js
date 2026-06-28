@@ -22,7 +22,7 @@ function getpokemon(){
     return document.getElementById("search").value;
 }
 
-export async function searchPokemon() {
+async function searchPokemon() {
     const name = getpokemon();
 
     return await fetchPokemonData(name);
