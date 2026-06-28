@@ -199,6 +199,17 @@ async function pokemonElement(pokemon) {
     const spriteUrl = pokemonjson.sprites.front_default;
     document.getElementById("pkSprite").src = spriteUrl;
 
+    //get abilities
+    const abilities = document.getElementById("pkAbility");
+    let ablilitylist = document.createElement("ul");
+    let ablist = pokemonjson.abilities;
+
+    ablist.forEach(ab => {
+        let li = document.createElement("li");
+        li.textContent = ab.ability.name;
+        ablilitylist.appendChild(li);
+    })
+
 
    console.log(pokemonjson.sprites);
     //add everything to the box
