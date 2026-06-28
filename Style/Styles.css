@@ -128,7 +128,7 @@ body.dark-mode button#dark {
 /*pokedex.html styles*/
 /* pokedex.html styles */
 
-.pokemon {
+.pokemon , .calculator{
     min-height: 100vh;
     display: flex;
     flex-direction: column;
