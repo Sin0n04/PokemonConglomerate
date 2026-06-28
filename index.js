@@ -55,8 +55,9 @@ async function getPokemon() {
 async function pokemonElement(pokemon) {
     console.log("pokemonElement called");
     const pkinfo = document.getElementById("pkinfo");
-    pkinfo.innerHTML = ""; // Clear previous result
-
+    pkinfo.innerHTML = ""; 
+    pkinfo.innerHTML = `<img src="" id="pkSprite">`;// Clear previous content
+    
     const pokemonjson = await getPokemon();
     const box = document.getElementById("pkinfo");
 
@@ -71,7 +72,7 @@ async function pokemonElement(pokemon) {
     //get types
     let types = pokemonjson.types;
     let typelist = document.createElement("ul");
-    typelist.id = "typelist";
+    typelist.id = "pkTypes";
 
 
     types.forEach(type => {
@@ -178,6 +179,7 @@ async function pokemonElement(pokemon) {
 
         const statName = document.createElement("td");
         statName.textContent = stat.stat.name;
+        statName.style.fontFamily = "Consolas, Monaco, 'Courier New', monospace";
 
         const statValue = document.createElement("td");
         statValue.textContent = stat.base_stat;
@@ -189,23 +191,30 @@ async function pokemonElement(pokemon) {
     });
 
     //get weight
-    let id  = pokemonjson.forms.id;
+    let id  = pokemonjson.id;
     let idelement = document.createElement("span");
     idelement.textContent = id;
 
+    //get sprite
+    const spriteUrl = pokemonjson.sprites.front_default;
+    document.getElementById("pkSprite").src = spriteUrl;
+
+
+   console.log(pokemonjson.sprites);
     //add everything to the box
     box.appendChild(name);
     box.appendChild(statslist);
     box.appendChild(typelist);
     box.appendChild(idelement);
 
-
     //style the element....
     box.classList.add("visible");
 }
 
 //create event
-document.getElementById("searchButton").addEventListener("click", pokemonElement);
-
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("searchButton")
+        .addEventListener("click", pokemonElement);
+});
 
     

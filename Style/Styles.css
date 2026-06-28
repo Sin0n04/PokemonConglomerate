@@ -78,7 +78,15 @@ body.dark-mode #indexInfo {
     
     background-color: #f8f7f7;
 }
-
+#indexInfo p {
+    min-height: 1vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    transition: background-color 0.3s;
+}
 button#dark {
     display: block;
     margin: 20px auto;
@@ -88,6 +96,8 @@ button#dark {
     border-radius: 5px;
     
 }
+
+
 
 button#dark img {
     width: 100px;
@@ -227,4 +237,30 @@ body.dark-mode .center-box p {
 }
 
 /*type colored bacground*/
-#typelist
+
+#pkTypes {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 15px 0;
+}
+
+#pkTypes li {
+    list-style: none;
+    padding: 8px 18px;
+    border-radius: 999px;
+    background-color: #e0e0e0;
+    color: #222;
+    font-weight: bold;
+    text-transform: capitalize;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+#pkSprite {
+    width: 150px;
+    height: 150px;
+    display: block;
+    margin: 10px auto;
+    image-rendering: pixelated;
+}
