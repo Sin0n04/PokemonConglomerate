@@ -18,14 +18,31 @@ async function fetchPokemonData(pokemonName) {
 }
 
 
-function getpokemon(){
+function getpokemonName(){
     return document.getElementById("search").value;
 }
 
-async function searchPokemon() {
-    const name = getpokemon();
+async function getPokemon() {
+    const name = getpokemonName();
 
-    return await fetchPokemonData(name);
+    return fetchPokemonData(name);//ACTUAL POKEMON DATA
+}
+
+//function to create element?? brb
+async function pokemonElement(pokemon) {
+    const pokemonjson = await getPokemon();
+    const box = document.getElementById("pkinfo");
+
+    //get values
+    const name = document.createElement("h2");
+    name.textContent = pokemon.forms[0].name;
+
+
+
+    //create elements
+
+
+    //style the element....
 }
 
 
