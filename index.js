@@ -61,6 +61,8 @@ async function statusCondition(value) {
 
         const li = document.createElement("li");
         const button = document.createElement("button");
+        button.id = cond.name;
+        button.onclick = calculateRate(value, cond.name); 
 
         button.textContent = cond.name;
 
@@ -72,19 +74,21 @@ async function statusCondition(value) {
     box.classList.add("visible");
 }
 
-async function pokeballValue(element){
-    let pokeball = element.id;
+async function pokeballValue(button){
+    let pokeball = button.id;
     let value = "";
     switch(pokeball){
         case "poke":
             value = pokeValues.poke;
             break;
         case "great":
+            value = pokeValues.great;
             break;
         case "ultra":
             value = pokeValues.ultra;
             break;
     }
+    
 
      await statusCondition(value);
 
@@ -146,7 +150,8 @@ async function getPokemonRate(){
 
 
 //function to create element?? brb
-async function pokemonElement(pokemon) {
+
+async function pokemonElement() {
     console.log("pokemonElement called");
     const pkinfo = document.getElementById("pkinfo");
     pkinfo.innerHTML = ""; 
@@ -332,29 +337,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("searchFormRate").addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent page reload
+        pokemonElement("rate");
+    });
+
+});
+
 //catch rate functions...
 
-function calculateRate(catchrate) {
-    
 
-}
 
-async function catchRateElement(){
-    const pkjson = await getPokemon();
-    const box = document.getElementById("catchRatePage");
-
-    //get values
-    const cr = getPokemonRate();
-    const catchrate = cr.capture_rate;
-
-    let result = calculateRate(catchrate);
-
-   document.addEventListener("DOMContentLoaded", () =>{
-       document.getElementById("searchFormRate").addEventListener("submit",function (event) {
-           event.preventDefault();
-           //insert catchrate function here
-
-       })
-   })
-}
 
