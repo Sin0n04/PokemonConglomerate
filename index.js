@@ -22,9 +22,9 @@ const colours = {
 };
 
 const pokeValues = {
-    poke: 12 ,
-    great: 8 ,
-    ultra: 2
+    poke: 200 ,
+    great: 255 ,
+    master: -1
 }
 
 
@@ -37,7 +37,30 @@ function darkfunction() {
         element.classList.toggle("dark-mode");
 }
 
-async function statusCondition(value) {
+  function calculateRate(ball, statusCondition) {
+     const box = document.getElementById("catchRatePage") ;
+     let result = "";
+     if (ball === -1){
+         result = "That is a Guaranteed Catch!"
+     }
+     else{
+         // need to : create function that recieves : rate, ball value and status condition, create input to recieve current and max hp from keyboard ad pass it the function....( god this is so tedious....)
+        // double F = (double)(pokemon.HPmax * 255 * 4) /  (pokemon.HPcurr * Bvalue);
+
+        // double x = (((double)pokemon.statusCondition / (ball.ballvalue + 1 )) + (((double)(pokemon.catchrate + 1) / (ball.ballvalue + 1 )) * ((F + 1)/256)));
+     }
+
+
+
+
+     //box
+      const title = document.createElement("h2");
+      title.textContent = result;
+      box.appendChild(title);
+
+  }
+
+  async function statusCondition(value) {
     const box = document.getElementById("statuslist");
     const statcondlist = await getstatusdata();
 
@@ -84,8 +107,8 @@ async function pokeballValue(button){
         case "great":
             value = pokeValues.great;
             break;
-        case "ultra":
-            value = pokeValues.ultra;
+        case "Master":
+            value = pokeValues.master;
             break;
     }
     
@@ -337,13 +360,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("searchFormRate").addEventListener("submit", function (event) {
-        event.preventDefault(); // Prevent page reload
-        pokemonElement("rate");
-    });
 
-});
 
 //catch rate functions...
 
