@@ -60,41 +60,22 @@ function darkfunction() {
 
   }
 
-  async function statusCondition(value) {
-    const box = document.getElementById("statuslist");
-    const statcondlist = await getstatusdata();
-
+async function pokemonrateElement() {
+    const pokemonjson = await getPokemon();
+    const box = document.getElementById("pokelist") ;
     box.innerHTML = "";
+    var pokeball = document.createElement("ul");
+    poke
 
-    const div = document.createElement("div");
-    div.classList.toggle("center-box");
+    //<ul id="pokeball">
+    //             <li><button onclick="pokeballValue(this)" id="poke" ><img src="../assets/poke.png" alt=""></button></li>
+    //             <li><button onclick="pokeballValue(this)" id="great"><img src="../assets/great.png" alt=""></button></li>
+    //             <li><button onclick="pokeballValue(this)" id="Master"><img src="../assets/master.png" alt=""></button></li>
+    //         </ul>
 
-    const title = document.createElement("h2");
-    title.textContent = "Status Conditions";
-    div.appendChild(title);
-
-    box.appendChild(div);
-
-    const ul = document.createElement("ul");
-
-    const results = statcondlist.results;
-
-    for (let i = 2; i < 7; i++) {
-        const cond = results[i];
-
-        const li = document.createElement("li");
-        const button = document.createElement("button");
-        button.id = cond.name;
-        button.onclick = calculateRate(value, cond.name); 
-
-        button.textContent = cond.name;
-
-        li.appendChild(button);
-        ul.appendChild(li);
+    for (let i = 0; i < 3; i++) {
+        
     }
-
-    box.appendChild(ul);
-    box.classList.add("visible");
 }
 
 async function pokeballValue(button){
@@ -116,6 +97,44 @@ async function pokeballValue(button){
      await statusCondition(value);
 
 }
+
+  async function statusCondition(value) {
+      const box = document.getElementById("statuslist");
+      const statcondlist = await getstatusdata();
+
+      box.innerHTML = "";
+
+      const div = document.createElement("div");
+      div.classList.toggle("center-box");
+
+      const title = document.createElement("h2");
+      title.textContent = "Status Conditions";
+      div.appendChild(title);
+
+      box.appendChild(div);
+
+      const ul = document.createElement("ul");
+
+      const results = statcondlist.results;
+
+      for (let i = 2; i < 7; i++) {
+          const cond = results[i];
+
+          const li = document.createElement("li");
+          const button = document.createElement("button");
+          button.id = cond.name;
+          button.onclick = calculateRate(value, cond.name);
+
+          button.textContent = cond.name;
+
+          li.appendChild(button);
+          ul.appendChild(li);
+      }
+
+      box.appendChild(ul);
+      box.classList.add("visible");
+  }
+  
 
 
 //fetching pokemon data functions 
@@ -359,6 +378,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+
+  document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("searchFormRate").addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent page reload
+          pokemonElement();
+          pokemonrateElement();
+      });
+
+  });
 
 
 
