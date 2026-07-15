@@ -60,12 +60,15 @@ function darkfunction() {
 
   }
 
+
+  
 async function pokemonrateElement() {
     const pokemonjson = await getPokemon();
     const box = document.getElementById("pokelist") ;
     box.innerHTML = "";
-    var pokeball = document.createElement("ul");
-    poke
+    let pokeball = document.createElement("ul");
+    pokeball.setAttribute("id", "pokeball");
+
 
     //<ul id="pokeball">
     //             <li><button onclick="pokeballValue(this)" id="poke" ><img src="../assets/poke.png" alt=""></button></li>
@@ -74,8 +77,34 @@ async function pokemonrateElement() {
     //         </ul>
 
     for (let i = 0; i < 3; i++) {
-        
+        let pokename = document.createElement("li");
+        let pokebutton = document.createElement("button");
+        pokebutton.addEventListener("click", () => pokeballValue(pokebutton));
+
+        let pokeimage = document.createElement("img");
+        switch (i) {
+            case 1:
+                pokebutton.setAttribute("id", "great");
+                pokeimage.setAttribute("src", "../assets/great.png");
+                pokebutton.appendChild(pokeimage);
+                break;
+            case 2:
+                pokebutton.setAttribute("id", "Master");
+                pokeimage.setAttribute("src", "../assets/master.png");
+                pokebutton.appendChild(pokeimage);
+                break;
+            default:
+                pokebutton.setAttribute("id", "poke");
+                pokeimage.src = "../assets/poke.png";
+                pokebutton.appendChild(pokeimage);
+                break;
+        }
+
+        pokename.appendChild(pokebutton);
+        pokeball.appendChild(pokename);
     }
+
+    box.appendChild(pokeball);
 }
 
 async function pokeballValue(button){
