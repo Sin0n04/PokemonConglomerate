@@ -150,7 +150,7 @@ body.dark-mode button#dark {
     transition: background-color 0.3s;
 }
 
-#search {
+#search ,#minHp{
     flex: 1;
     border: none;
     outline: none;
@@ -202,10 +202,10 @@ body.dark-mode button#dark {
     color: #555;
 }
 
-#pkinfo , #statuslist{
+#pkinfo , #statuslist, #healthbox{
     display: none;
 }
-#pkinfo.visible, #statuslist.visible {
+#pkinfo.visible, #statuslist.visible, #healthbox.visible {
     display: block;
 }
 

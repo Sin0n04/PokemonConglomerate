@@ -27,6 +27,14 @@ const pokeValues = {
     master: -1
 }
 
+const statValue = {
+      Paralysis: 12,
+      Poison: 12,
+      Freeze: 25,
+      Burn: 12,
+      Sleep: 25,
+      None:0,
+}
 
 
 
@@ -58,24 +66,48 @@ function darkfunction() {
       title.textContent = result;
       box.appendChild(title);
 
+
   }
 
+
+  
 async function pokemonrateElement() {
     const pokemonjson = await getPokemon();
     const box = document.getElementById("pokelist") ;
     box.innerHTML = "";
-    var pokeball = document.createElement("ul");
-    poke
+    let pokeball = document.createElement("ul");
+    pokeball.setAttribute("id", "pokeball");
 
-    //<ul id="pokeball">
-    //             <li><button onclick="pokeballValue(this)" id="poke" ><img src="../assets/poke.png" alt=""></button></li>
-    //             <li><button onclick="pokeballValue(this)" id="great"><img src="../assets/great.png" alt=""></button></li>
-    //             <li><button onclick="pokeballValue(this)" id="Master"><img src="../assets/master.png" alt=""></button></li>
-    //         </ul>
 
     for (let i = 0; i < 3; i++) {
-        
+        let pokename = document.createElement("li");
+        let pokebutton = document.createElement("button");
+        pokebutton.addEventListener("click", () => pokeballValue(pokebutton));
+
+        let pokeimage = document.createElement("img");
+        switch (i) {
+            case 1:
+                pokebutton.setAttribute("id", "great");
+                pokeimage.setAttribute("src", "../assets/great.png");
+                pokebutton.appendChild(pokeimage);
+                break;
+            case 2:
+                pokebutton.setAttribute("id", "Master");
+                pokeimage.setAttribute("src", "../assets/master.png");
+                pokebutton.appendChild(pokeimage);
+                break;
+            default:
+                pokebutton.setAttribute("id", "poke");
+                pokeimage.src = "../assets/poke.png";
+                pokebutton.appendChild(pokeimage);
+                break;
+        }
+
+        pokename.appendChild(pokebutton);
+        pokeball.appendChild(pokename);
     }
+
+    box.appendChild(pokeball);
 }
 
 async function pokeballValue(button){
@@ -97,6 +129,8 @@ async function pokeballValue(button){
      await statusCondition(value);
 
 }
+
+
 
   async function statusCondition(value) {
       const box = document.getElementById("statuslist");
@@ -123,15 +157,49 @@ async function pokeballValue(button){
           const li = document.createElement("li");
           const button = document.createElement("button");
           button.id = cond.name;
-          button.onclick = calculateRate(value, cond.name);
+          button.addEventListener("click", () => maxMinHealth(value, cond.name));
 
           button.textContent = cond.name;
 
           li.appendChild(button);
           ul.appendChild(li);
       }
-
+      const lit = document.createElement("li");
+      const buttont = document.createElement("button");
+      buttont.id = "none";
+      buttont.addEventListener("click", () => maxMinHealth(value, "None"));
+      buttont.textContent = "None";
+      lit.appendChild(buttont);
+      ul.appendChild(lit);
       box.appendChild(ul);
+      box.classList.add("visible");
+  }
+
+  async function maxMinHealth(pokeballIntvalue, statusName) {
+    const box = document.getElementById("healthbox");
+    box.innerHTML = "";
+
+    // just do two inputs since pokemon hp do not have fixed values at any level....
+      let healthUl = document.createElement("ul");
+      //current hp
+      let li = document.createElement("li");
+      //<form class="search-container" id="searchForm">
+      //         <input type="text" id="search" placeholder="Search Pokémon...">
+      //         <button type="submit" id="searchButton">Search</button>
+      //     </form>
+      let currHp = document.createElement("form");
+      currHp.className = "search-container";
+      currHp.id = "minHp";
+
+      let currHpInput = document.createElement("input");
+      currHpInput.placeholder = "Input Current Hp";
+      currHpInput.className = "search-input";
+      currHp.appendChild(currHpInput);
+      li.appendChild(currHp);
+      healthUl.appendChild(li);
+      box.appendChild(healthUl);
+      //max hp
+
       box.classList.add("visible");
   }
   
@@ -337,11 +405,9 @@ async function pokemonElement() {
     idelement.textContent = id;
 
     //get sprite
-    const spriteUrl = pokemonjson.sprites.front_default;
-    document.getElementById("pkSprite").src = spriteUrl;
+    document.getElementById("pkSprite").src = pokemonjson.sprites.front_default;
 
     //get abilities
-    const abilities = document.getElementById("pkAbility");
     const ablilitylist = document.createElement("ul");
      ablilitylist.id = "pkAbilities";
     let ablist = pokemonjson.abilities;
