@@ -202,10 +202,10 @@ body.dark-mode button#dark {
     color: #555;
 }
 
-#pkinfo , #statuslist, #healthbox{
+#pkinfo , #statuslist, #healthbox, #catchRatePage{
     display: none;
 }
-#pkinfo.visible, #statuslist.visible, #healthbox.visible {
+#pkinfo.visible, #statuslist.visible, #healthbox.visible , #catchRatePage.visible{
     display: block;
 }
 
@@ -355,4 +355,49 @@ body.dark-mode .center-box p {
 
 #statuslist li button:active {
     transform: scale(0.96);
+}
+#healthbox {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+#healthbox ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+#healthbox li {
+    margin-bottom: 18px;
+}
+
+#healthbox .search-container {
+    width: 100%;
+}
+
+#healthbox .search-input {
+    width: 100%;
+    height: 55px;
+    padding: 0 18px;
+    border: none;
+    border-radius: 30px;
+    background: #7fc3e0;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    outline: none;
+    box-sizing: border-box;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+    transition: 0.2s;
+}
+
+#healthbox .search-input::placeholder {
+    color: rgba(255,255,255,0.8);
+}
+
+#healthbox .search-input:focus {
+    transform: scale(1.02);
+    box-shadow: 0 10px 22px rgba(0,0,0,0.25);
 }

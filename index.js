@@ -27,14 +27,14 @@ const pokeValues = {
     master: -1
 }
 
-const statValue = {
+  const statValue = {
       Paralysis: 12,
       Poison: 12,
       Freeze: 25,
       Burn: 12,
       Sleep: 25,
       None:0,
-}
+  }
 
 
 
@@ -45,7 +45,7 @@ function darkfunction() {
         element.classList.toggle("dark-mode");
 }
 
-  function calculateRate(ball, statusCondition) {
+  function calculateRate(ballvalue, statusConditionValue,maxHp,currHp) {
      const box = document.getElementById("catchRatePage") ;
      let result = "";
      if (ball === -1){
@@ -157,7 +157,10 @@ async function pokeballValue(button){
           const li = document.createElement("li");
           const button = document.createElement("button");
           button.id = cond.name;
-          button.addEventListener("click", () => maxMinHealth(value, cond.name));
+          button.addEventListener("click", () => {
+              maxMinHealth(value, cond.name)
+              button.classList.add("active");
+          });
 
           button.textContent = cond.name;
 
@@ -176,31 +179,75 @@ async function pokeballValue(button){
   }
 
   async function maxMinHealth(pokeballIntvalue, statusName) {
-    const box = document.getElementById("healthbox");
-    box.innerHTML = "";
+    let statusValue = 0;
+    switch (statusName) {
+        case "Paralysis", "Poison", "Burn":
+            statusValue = statValue.Poison;
+            break;
+        case "Freeze" , "Sleep" :
+            statusValue = statValue.Freeze;
+            break;
+        case "None" :
+            statusValue = statValue.None;
+            break;
+    }
 
-    // just do two inputs since pokemon hp do not have fixed values at any level....
+
+
+      const box = document.getElementById("healthbox");
+      box.innerHTML = "";
+
       let healthUl = document.createElement("ul");
-      //current hp
-      let li = document.createElement("li");
-      //<form class="search-container" id="searchForm">
-      //         <input type="text" id="search" placeholder="Search Pokémon...">
-      //         <button type="submit" id="searchButton">Search</button>
-      //     </form>
+
+      // Current HP
+      let currLi = document.createElement("li");
+
       let currHp = document.createElement("form");
       currHp.className = "search-container";
-      currHp.id = "minHp";
+      currHp.id = "currentHpForm";
+      let currhpvalue = 0;
+      currHp.addEventListener("submit", () =>{ currhpvalue =
+          document.getElementById("currentHpForm").value
+          maxhpvalue = document.getElementById("maxHpForm").value});
 
       let currHpInput = document.createElement("input");
-      currHpInput.placeholder = "Input Current Hp";
+      currHpInput.type = "number";
+      currHpInput.placeholder = "Current HP";
       currHpInput.className = "search-input";
+
       currHp.appendChild(currHpInput);
-      li.appendChild(currHp);
-      healthUl.appendChild(li);
+      currLi.appendChild(currHp);
+      healthUl.appendChild(currLi);
+
+      // Max HP
+      let maxLi = document.createElement("li");
+
+      let maxHp = document.createElement("form");
+      maxHp.className = "search-container";
+      maxHp.id = "maxHpForm";
+
+      let maxHpInput = document.createElement("input");
+      maxHpInput.type = "number";
+      maxHpInput.placeholder = "Max HP";
+      maxHpInput.className = "search-input";
+      let maxhpvalue = 0;
+      maxHp.addEventListener("submit", () =>{
+          currhpvalue = document.getElementById("currentHpForm").value
+          maxhpvalue = document.getElementById("maxHpForm").value});
+
+
+              maxHp.appendChild(maxHpInput);
+      maxLi.appendChild(maxHp);
+      healthUl.appendChild(maxLi);
+
       box.appendChild(healthUl);
-      //max hp
 
       box.classList.add("visible");
+
+      if (maxhpvalue != null && currhpvalue != null){
+            calculateRate(pokeballIntvalue,statusValue,maxhpvalue,currhpvalue)
+      }
+
   }
   
 
