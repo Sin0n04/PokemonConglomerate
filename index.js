@@ -45,29 +45,7 @@ function darkfunction() {
         element.classList.toggle("dark-mode");
 }
 
-  function calculateRate(ballvalue, statusConditionValue,maxHp,currHp) {
-     const box = document.getElementById("catchRatePage") ;
-     let result = "";
-     if (ball === -1){
-         result = "That is a Guaranteed Catch!"
-     }
-     else{
-         // need to : create function that recieves : rate, ball value and status condition, create input to recieve current and max hp from keyboard ad pass it the function....( god this is so tedious....)
-        // double F = (double)(pokemon.HPmax * 255 * 4) /  (pokemon.HPcurr * Bvalue);
 
-        // double x = (((double)pokemon.statusCondition / (ball.ballvalue + 1 )) + (((double)(pokemon.catchrate + 1) / (ball.ballvalue + 1 )) * ((F + 1)/256)));
-     }
-
-
-
-
-     //box
-      const title = document.createElement("h2");
-      title.textContent = result;
-      box.appendChild(title);
-
-
-  }
 
 
   
@@ -108,6 +86,7 @@ async function pokemonrateElement() {
     }
 
     box.appendChild(pokeball);
+    box.classList.add("visible")
 }
 
 async function pokeballValue(button){
@@ -179,74 +158,127 @@ async function pokeballValue(button){
   }
 
   async function maxMinHealth(pokeballIntvalue, statusName) {
-    let statusValue = 0;
-    switch (statusName) {
-        case "Paralysis", "Poison", "Burn":
-            statusValue = statValue.Poison;
-            break;
-        case "Freeze" , "Sleep" :
-            statusValue = statValue.Freeze;
-            break;
-        case "None" :
-            statusValue = statValue.None;
-            break;
-    }
+      let statusValue = 0;
 
+      switch (statusName) {
+          case "Paralysis":
+          case "Poison":
+          case "Burn":
+              statusValue = statValue.Poison;
+              break;
 
+          case "Freeze":
+          case "Sleep":
+              statusValue = statValue.Freeze;
+              break;
+
+          default:
+              statusValue = statValue.None;
+      }
 
       const box = document.getElementById("healthbox");
       box.innerHTML = "";
 
-      let healthUl = document.createElement("ul");
+      const healthUl = document.createElement("ul");
+      const currLi = document.createElement("li");
 
-      // Current HP
-      let currLi = document.createElement("li");
+      const form = document.createElement("form");
+      form.className = "search-container";
+      form.id = "currentHpForm";
 
-      let currHp = document.createElement("form");
-      currHp.className = "search-container";
-      currHp.id = "currentHpForm";
-      let currhpvalue = 0;
-      currHp.addEventListener("submit", () =>{ currhpvalue =
-          document.getElementById("currentHpForm").value
-          maxhpvalue = document.getElementById("maxHpForm").value});
+      const submit = document.createElement("button");
+      submit.type = "submit";
+      submit.textContent = "Calculate";
 
-      let currHpInput = document.createElement("input");
+      const currHpInput = document.createElement("input");
       currHpInput.type = "number";
       currHpInput.placeholder = "Current HP";
       currHpInput.className = "search-input";
+      currHpInput.name = "currentHp";
+      currHpInput.required = true;
 
-      currHp.appendChild(currHpInput);
-      currLi.appendChild(currHp);
-      healthUl.appendChild(currLi);
-
-      // Max HP
-      let maxLi = document.createElement("li");
-
-      let maxHp = document.createElement("form");
-      maxHp.className = "search-container";
-      maxHp.id = "maxHpForm";
-
-      let maxHpInput = document.createElement("input");
+      const maxHpInput = document.createElement("input");
       maxHpInput.type = "number";
       maxHpInput.placeholder = "Max HP";
       maxHpInput.className = "search-input";
-      let maxhpvalue = 0;
-      maxHp.addEventListener("submit", () =>{
-          currhpvalue = document.getElementById("currentHpForm").value
-          maxhpvalue = document.getElementById("maxHpForm").value});
+      maxHpInput.name = "maxHp";
+      maxHpInput.required = true;
 
+      form.appendChild(submit);
+      form.appendChild(currHpInput);
+      form.appendChild(maxHpInput);
 
-              maxHp.appendChild(maxHpInput);
-      maxLi.appendChild(maxHp);
-      healthUl.appendChild(maxLi);
+      form.addEventListener("submit", async (e) => {
+          e.preventDefault();
 
+          const currhpvalue = Number(currHpInput.value);
+          const maxhpvalue = Number(maxHpInput.value);
+
+          if (currhpvalue <= 0 || maxhpvalue <= 0) return;
+
+          await calculateRate(
+              pokeballIntvalue,
+              statusValue,
+              maxhpvalue,
+              currhpvalue
+          );
+      });
+
+      currLi.appendChild(form);
+      healthUl.appendChild(currLi);
       box.appendChild(healthUl);
 
       box.classList.add("visible");
+  }
 
-      if (maxhpvalue != null && currhpvalue != null){
-            calculateRate(pokeballIntvalue,statusValue,maxhpvalue,currhpvalue)
+  async function calculateRate(ballvalue, statusConditionValue,maxHp,currHp) {
+    console.log("calculaterate Called");
+      const box = document.getElementById("catchRatePage") ;
+      box.innerHTML = "";
+      let result = 0;
+      let Bvalue = 0;
+      //const pokeValues = {
+      //     poke: 200 ,
+      //     great: 255 ,
+      //     master: -1
+      // }
+      let catchrate = await getPokemonRate();
+
+      switch (ballvalue) {
+          case 255:
+              Bvalue = 8;
+              break;
+          case -1:
+              Bvalue = -1
+              break;
+          default:
+              Bvalue = 12;
+              break;
       }
+
+      if (Bvalue === -1){
+          result = "That is a Guaranteed Catch!"
+      }
+      else{
+          // need to : create function that recieves : rate, ball value and status condition, create input to recieve current and max hp from keyboard ad pass it the function....( god this is so tedious....)
+          // double F = (double)(pokemon.HPmax * 255 * 4) /  (pokemon.HPcurr * Bvalue);
+          const f = (maxHp * 255 * 4 ) / (currHp * Bvalue);
+          // double x = (((double)pokemon.statusCondition / (ball.ballvalue + 1 )) + (((double)(pokemon.catchrate + 1) / (ball.ballvalue + 1 )) * ((F + 1)/256)));
+          const x = statusConditionValue / (ballvalue+1) + (catchrate + 1) * ((f+1)/256);
+
+          result = "The probability of catching the indicated pokemon is: " + x + "%";
+      }
+
+
+
+
+
+      //box
+      const title = document.createElement("h2");
+      title.textContent = result;
+      box.appendChild(title);
+      box.classList.add("visible");
+
 
   }
   
@@ -288,8 +320,10 @@ async function getPokemon() {
 
 async function getPokemonRate(){
     try{
-        const response = await fetch("https://pokeapi.co/api/v2/pokemon-species/" + getPokemon().id)
-        return response.json;
+        const pokemon = await getPokemon();
+        const response = await fetch("https://pokeapi.co/api/v2/pokemon-species/" + pokemon.id)
+        const data = await response.json();
+        return data.capture_rate
     }catch (e) {
         console.error("Error fetching Pokemon data: ", e);
     }
