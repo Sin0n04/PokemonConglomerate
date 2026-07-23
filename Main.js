@@ -5,6 +5,7 @@ const createWindow = () => {
     const win = new BrowserWindow({
         width: 800,
         height: 600,
+        title:"PokeMon Conglomerate",
         icon: path.join(__dirname, "assets", "icon.ico")
     })
 
