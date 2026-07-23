@@ -34,3 +34,5 @@ The project is designed to provide a simple and easy-to-use interface for explor
 <p align="center">
   <strong>Pokémon Conglomerate</strong> 
 </p>
+
+[![Download](https://img.shields.io/github/v/release/Sin0n04/PokemonConglomerate?label=Download&style=for-the-badge)](https://github.com/Sin0n04/PokemonConglomerate/releases/latest)
