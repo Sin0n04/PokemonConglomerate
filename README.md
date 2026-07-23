@@ -32,5 +32,5 @@ The project is designed to provide a simple and easy-to-use interface for explor
 ---
 
 <p align="center">
-  🎮 <strong>Pokémon Conglomerate</strong> 🎮
+  <strong>Pokémon Conglomerate</strong> 
 </p>
