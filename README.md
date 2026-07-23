@@ -1,4 +1,4 @@
-#Pokémon Conglomerate
+## Pokémon Conglomerate
 
 <p align="center">
   <strong>A simple Pokémon utility application for fans and players.</strong>
