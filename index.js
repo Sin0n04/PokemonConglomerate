@@ -537,7 +537,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-//catch rate functions...
+//add backside to card
 
 
 
