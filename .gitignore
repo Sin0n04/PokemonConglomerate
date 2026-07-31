@@ -1,0 +1,1 @@
+printf "node_modules/\nout/\n.DS_Store\n" >> .gitignore
