@@ -14,7 +14,7 @@
   "license": "ISC",
   "author": "Sin0n",
   "type": "commonjs",
-  "main": "Main.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron-forge start",
