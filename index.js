@@ -266,7 +266,10 @@ async function pokeballValue(button){
           // double x = (((double)pokemon.statusCondition / (ball.ballvalue + 1 )) + (((double)(pokemon.catchrate + 1) / (ball.ballvalue + 1 )) * ((F + 1)/256)));
           const x = statusConditionValue / (ballvalue+1) + (catchrate + 1) * ((f+1)/256);
 
-          result = "The probability of catching the indicated pokemon is: " + x + "%";
+          if(x > 100){
+              result = "That is a Guaranteed Catch favoured by the odds!"
+          }else
+              result = "The probability of catching the indicated pokemon is: " + x + "%";
       }
 
 

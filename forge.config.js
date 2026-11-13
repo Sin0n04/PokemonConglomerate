@@ -5,6 +5,18 @@ module.exports = {
   packagerConfig: {
     asar: true,
     icon: "./assets/icon",
+
+    appBundleId: "com.sin0n.pokemonconglomerate",
+
+    osxSign: {
+      identity: "Developer ID Application: emmanuelani1119@gmail.com (7T78655BQF)",
+    },
+
+    osxNotarize: {
+      appleId: process.env.APPLE_ID,
+      appleIdPassword: process.env.APPLE_APP_SPECIFIC_PASSWORD,
+      teamId: process.env.APPLE_TEAM_ID,
+    },
   },
   rebuildConfig: {},
   makers: [

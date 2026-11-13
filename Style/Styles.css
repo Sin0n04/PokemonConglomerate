@@ -88,12 +88,12 @@ body.dark-mode #indexInfo {
     transition: background-color 0.3s;
 }
 button#dark {
-    display: block;
-    margin: 20px auto;
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
+        display: block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
     
 }
 
